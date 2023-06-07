@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.UUID;
+
 @Table(name = "books")
 @Getter
 @Setter
@@ -15,14 +17,14 @@ import lombok.Setter;
 public class Book {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator = "UUID")
     @Column(name = "id")
-    private int id;
+    private UUID id;
 
     @Column(name = "name")
     private String name;
 
     @ManyToOne
-    @JoinColumn(name = "authorId")
+    @JoinColumn(name = "author_id")
     private Author author;
 }
