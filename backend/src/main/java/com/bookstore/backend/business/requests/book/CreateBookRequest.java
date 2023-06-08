@@ -18,4 +18,7 @@ public class CreateBookRequest {
     @NotBlank
     @Size(min = 2, max = 25)
     private String name;
+
+    @NotNull
+    private String authorId;
 }

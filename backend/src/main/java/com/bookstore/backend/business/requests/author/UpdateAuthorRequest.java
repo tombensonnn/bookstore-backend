@@ -8,14 +8,13 @@ import lombok.Setter;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.UUID;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class UpdateAuthorRequest {
-    private UUID id;
+    private String id;
 
     @NotNull(message = "Name field cannot be null")
     @NotBlank
