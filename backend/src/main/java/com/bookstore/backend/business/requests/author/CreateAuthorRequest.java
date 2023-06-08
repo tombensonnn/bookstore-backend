@@ -20,4 +20,5 @@ public class CreateAuthorRequest {
     @NotBlank
     @Size(min = 5)
     private String name;
+
 }

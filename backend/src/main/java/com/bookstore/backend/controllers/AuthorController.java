@@ -1,22 +1,22 @@
 package com.bookstore.backend.controllers;
 
-import com.bookstore.backend.business.abstracts.AuthorService;
+import com.bookstore.backend.business.services.AuthorService;
 import com.bookstore.backend.business.requests.author.CreateAuthorRequest;
 import com.bookstore.backend.business.requests.author.UpdateAuthorRequest;
 import com.bookstore.backend.business.responses.author.GetAllAuthorsResponse;
 import com.bookstore.backend.business.responses.author.GetByIdAuthorResponse;
-import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
-
 @RestController
-@RequestMapping("/api/authors")
-@AllArgsConstructor
+@RequestMapping("/v1/author")
 public class AuthorController {
-    private AuthorService authorService;
+    private final AuthorService authorService;
+
+    public AuthorController(AuthorService authorService) {
+        this.authorService = authorService;
+    }
 
     @GetMapping
     public List<GetAllAuthorsResponse> getAll() {
@@ -24,7 +24,7 @@ public class AuthorController {
     }
 
     @GetMapping("/{id}")
-    public GetByIdAuthorResponse getById(@PathVariable UUID id) {
+    public GetByIdAuthorResponse getById(@PathVariable String id) {
         return authorService.getById(id);
     }
 
@@ -38,7 +38,6 @@ public class AuthorController {
     public void update(@RequestBody UpdateAuthorRequest updateAuthorRequest){
         this.authorService.updateAuthor(updateAuthorRequest);
     }
-
 
 
 }
