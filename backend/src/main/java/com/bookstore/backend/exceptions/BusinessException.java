@@ -1,4 +1,4 @@
-package com.bookstore.backend.core.utilities.exceptions;
+package com.bookstore.backend.exceptions;
 
 public class BusinessException extends RuntimeException{
     public BusinessException(String message) {

@@ -3,4 +3,12 @@
   <component name="AdditionalModuleElements">
     <content url="file://$MODULE_DIR$" />
   </component>
+  <component name="AutoImportedSourceRoots">
+    <option name="directories">
+      <list>
+        <option value="C:\Users\tunah\code-examples\backend\backend/src/main/java" />
+        <option value="C:\Users\tunah\code-examples\backend\backend/src/test/java" />
+      </list>
+    </option>
+  </component>
 </module>
