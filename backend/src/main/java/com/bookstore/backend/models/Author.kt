@@ -16,8 +16,7 @@ data class Author(
         var name: String?,
 
         @OneToMany(mappedBy = "author", fetch = FetchType.EAGER, cascade = [CascadeType.ALL])
-        @Column(name = "books")
-        val books: Set<Book>? = HashSet()
+        val books: Set<Book>? = null
 ) {
         constructor(name: String?): this(
                 "",
