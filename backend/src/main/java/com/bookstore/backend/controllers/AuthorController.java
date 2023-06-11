@@ -40,8 +40,6 @@ public class AuthorController {
        return this.authorService.updateAuthor(updateAuthorRequest);
     }
 
-    // delete
-
     @DeleteMapping
     @ResponseStatus(code = HttpStatus.OK)
     public AuthorDto delete(@RequestBody DeleteAuthorRequest deleteAuthorRequest) {

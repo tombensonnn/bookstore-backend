@@ -4,6 +4,8 @@
     import com.bookstore.backend.dto.converters.AuthorDtoConverter;
     import com.bookstore.backend.dto.converters.BookDtoConverter;
     import com.bookstore.backend.dto.requests.book.CreateBookRequest;
+    import com.bookstore.backend.dto.requests.book.DeleteBookRequest;
+    import com.bookstore.backend.dto.requests.book.UpdateBookRequest;
     import com.bookstore.backend.exceptions.BookCouldNotFindException;
     import com.bookstore.backend.models.Book;
     import com.bookstore.backend.repositories.BookRepository;
@@ -18,20 +20,17 @@
         private final BookRepository bookRepository;
         private final AuthorService authorService;
         private final BookDtoConverter bookDtoConverter;
-        private final AuthorDtoConverter authorDtoConverter;
 
-        public BookService(BookRepository bookRepository, AuthorService authorService, BookDtoConverter bookDtoConverter, AuthorDtoConverter authorDtoConverter) {
+        public BookService(BookRepository bookRepository, AuthorService authorService, BookDtoConverter bookDtoConverter) {
             this.bookRepository = bookRepository;
             this.authorService = authorService;
             this.bookDtoConverter = bookDtoConverter;
-            this.authorDtoConverter = authorDtoConverter;
         }
 
         public List<BookDto> getAll() {
 
-            List<BookDto> books = this.bookRepository.findAll().stream().map(bookDtoConverter::convert).collect(Collectors.toList());
+            return this.bookRepository.findAll().stream().map(bookDtoConverter::convert).collect(Collectors.toList());
 
-            return books;
         }
 
         public Book findBookById(String id) {
@@ -55,6 +54,22 @@
 
             return this.bookDtoConverter.convert(this.bookRepository.save(book));
 
+        }
+
+        public BookDto updateBook(UpdateBookRequest updateBookRequest) {
+            Book book = findBookById(updateBookRequest.getId());
+
+            book.setName(updateBookRequest.getName());
+
+            return this.bookDtoConverter.convert(this.bookRepository.save(book));
+        }
+
+        public BookDto deleteBook(DeleteBookRequest deleteBookRequest) {
+            Book book = findBookById(deleteBookRequest.getId());
+
+            this.bookRepository.deleteById(deleteBookRequest.getId());
+
+            return this.bookDtoConverter.convert(book);
         }
 
     }

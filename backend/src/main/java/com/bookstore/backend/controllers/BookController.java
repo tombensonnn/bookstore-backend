@@ -2,6 +2,8 @@ package com.bookstore.backend.controllers;
 
 import com.bookstore.backend.dto.BookDto;
 import com.bookstore.backend.dto.requests.book.CreateBookRequest;
+import com.bookstore.backend.dto.requests.book.DeleteBookRequest;
+import com.bookstore.backend.dto.requests.book.UpdateBookRequest;
 import com.bookstore.backend.services.BookService;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,19 +23,24 @@ public class BookController {
         return this.bookService.getAll();
     }
 
-//    @GetMapping("/{id}")
-//    public GetByIdBookResponse getById(@PathVariable String id) {
-//        return this.bookService.getById(id);
-//    }
-//
-    @PostMapping
-    public void create(@RequestBody CreateBookRequest createBookRequest) {
-        this.bookService.createBook(createBookRequest);
+    @GetMapping("/{id}")
+    public BookDto getById(@PathVariable String id) {
+        return this.bookService.getBookById(id);
     }
-//
-//    @PutMapping
-//    public void update(@RequestBody UpdateBookRequest updateBookRequest) {
-//        this.bookService.updateBook(updateBookRequest);
-//    }
+
+    @PostMapping
+    public BookDto create(@RequestBody CreateBookRequest createBookRequest) {
+        return this.bookService.createBook(createBookRequest);
+    }
+
+    @PutMapping
+    public BookDto update(@RequestBody UpdateBookRequest updateBookRequest) {
+        return this.bookService.updateBook(updateBookRequest);
+    }
+
+    @DeleteMapping
+    public BookDto delete(@RequestBody DeleteBookRequest deleteBookRequest) {
+        return this.bookService.deleteBook(deleteBookRequest);
+    }
 
 }
